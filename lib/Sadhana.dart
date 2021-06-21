@@ -8,39 +8,26 @@ class Sadhana extends StatefulWidget {
 class _SadhanaState extends State<Sadhana> {
 
   final roundsCon = new TextEditingController();
-
-  static AlertDialog dialog = AlertDialog(
+  final AlertDialog dialog = AlertDialog(
     title: Text('Sadhana Information'),
-    //contentPadding: EdgeInsets.zero,
+    contentPadding: EdgeInsets.zero,
     content: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: "Enter restaurant",
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
 
-              ),
-              //controller: roundsCon,
-              cursorColor: Colors.black,
+          TextField(),
 
-            ),
-          ],
-        ),
+        ],
+      ),
     ),
     actions: [
       TextButton(
         //textColor: Colors.red,
         //onPressed: () => Navigator.pop(context),
         onPressed: () {  },
-        child: Text('ACTION 1'),
-      ),
-      TextButton(
-        //textColor: Colors.red,
-        //onPressed: () => Navigator.pop(context),
-        child: Text('ACTION 2'),
-        onPressed: () {},
+        child: Text('Submit'),
       ),
     ],
   );
