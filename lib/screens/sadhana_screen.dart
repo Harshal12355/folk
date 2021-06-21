@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folk_boys/widgets/sadhanda_card.dart';
 
 class Sadhana extends StatefulWidget {
   @override
@@ -6,7 +7,6 @@ class Sadhana extends StatefulWidget {
 }
 
 class _SadhanaState extends State<Sadhana> {
-
   final roundsCon = new TextEditingController();
   final AlertDialog dialog = AlertDialog(
     title: Text('Sadhana Information'),
@@ -16,9 +16,7 @@ class _SadhanaState extends State<Sadhana> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-
           TextField(),
-
         ],
       ),
     ),
@@ -26,7 +24,7 @@ class _SadhanaState extends State<Sadhana> {
       TextButton(
         //textColor: Colors.red,
         //onPressed: () => Navigator.pop(context),
-        onPressed: () {  },
+        onPressed: () {},
         child: Text('Submit'),
       ),
     ],
@@ -35,7 +33,11 @@ class _SadhanaState extends State<Sadhana> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("Sadhana"),
+      body: ListView(children: <Widget>[
+        SadhanaCard(),
+        SadhanaCard(),
+        SadhanaCard(),
+      ]),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
