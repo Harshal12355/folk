@@ -89,18 +89,16 @@ class _SadhanaCardState extends State<SadhanaCard> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return ListTile(
-                          title: GestureDetector(
-                              child: Text(widget.links[index],
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      color: Colors.blue)),
-                              onTap: () async {
-                                if (await canLaunch(widget.links[index])) {
-                                  await launch(widget.links[index]);
-                                } else {
-                                  throw 'Could not launch ${widget.links[index]}';
-                                }
-                              }));
+                        title: new InkWell(
+                            child: new Text(
+                              widget.links[index],
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            onTap: () => launch(widget.links[index])),
+                      );
                     },
                   ),
                 ),
