@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SadhanaCard extends StatefulWidget {
-  final String title;
-  final String description;
-  const SadhanaCard({Key? key, required this.title, required this.description})
-      : super(key: key);
+  final String name;
+  final int rounds;
+  final int lectures;
+  final List<String> links;
+
+  const SadhanaCard({
+    Key? key,
+    required this.name,
+    required this.rounds,
+    required this.lectures,
+    required this.links,
+  }) : super(key: key);
 
   @override
   _SadhanaCardState createState() => _SadhanaCardState();
@@ -28,6 +38,7 @@ class _SadhanaCardState extends State<SadhanaCard> {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             GestureDetector(
@@ -38,7 +49,7 @@ class _SadhanaCardState extends State<SadhanaCard> {
                   backgroundImage: NetworkImage(
                       "https://source.unsplash.com/random/200x200"),
                 ),
-                title: Text(widget.title),
+                title: Text(widget.name),
                 subtitle: Text("Boom Boom"),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
@@ -47,23 +58,42 @@ class _SadhanaCardState extends State<SadhanaCard> {
               ),
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Number of rounds: ",
-                  textAlign: TextAlign.left,
-                ),
-                SizedBox(
-                  height: 5,
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, bottom: 10),
+                  child: Text(
+                    "Number of rounds: ${widget.rounds}",
+                    style: GoogleFonts.montserrat(),
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Container(child: Text(widget.description)),
+                  padding: const EdgeInsets.only(left: 20, bottom: 10),
+                  child: Text(
+                    "Amount of time listening to lectures: ${widget.lectures}",
+                    style: GoogleFonts.montserrat(),
+                  ),
                 ),
-                SizedBox(
-                  height: 10,
-                )
+                ListView.builder(
+                  itemCount: widget.links.length,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                        title: GestureDetector(
+                            child: Text("Links: ${widget.links[index]}",
+                                style: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.blue)),
+                            onTap: () async {
+                              if (await canLaunch(widget.links[index])) {
+                                await launch(widget.links[index]);
+                              } else {
+                                throw 'Could not launch ${widget.links[index]}';
+                              }
+                            }));
+                  },
+                ),
               ],
             ),
           ],
