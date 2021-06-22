@@ -47,7 +47,13 @@ class _SadhanaCardState extends State<SadhanaCard> {
               ),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  "Number of rounds: ",
+                  textAlign: TextAlign.left,
+                ),
                 SizedBox(
                   height: 5,
                 ),
