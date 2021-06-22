@@ -74,25 +74,35 @@ class _SadhanaCardState extends State<SadhanaCard> {
                     style: GoogleFonts.montserrat(),
                   ),
                 ),
-                ListView.builder(
-                  itemCount: widget.links.length,
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                        title: GestureDetector(
-                            child: Text("Links: ${widget.links[index]}",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.blue)),
-                            onTap: () async {
-                              if (await canLaunch(widget.links[index])) {
-                                await launch(widget.links[index]);
-                              } else {
-                                throw 'Could not launch ${widget.links[index]}';
-                              }
-                            }));
-                  },
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, bottom: 10),
+                  child: Text(
+                    "Links:",
+                    style: GoogleFonts.montserrat(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5, bottom: 10),
+                  child: ListView.builder(
+                    itemCount: widget.links.length,
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                          title: GestureDetector(
+                              child: Text(widget.links[index],
+                                  style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.blue)),
+                              onTap: () async {
+                                if (await canLaunch(widget.links[index])) {
+                                  await launch(widget.links[index]);
+                                } else {
+                                  throw 'Could not launch ${widget.links[index]}';
+                                }
+                              }));
+                    },
+                  ),
                 ),
               ],
             ),

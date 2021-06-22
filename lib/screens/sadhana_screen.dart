@@ -35,8 +35,10 @@ class _SadhanaState extends State<Sadhana> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(children: <Widget>[
-SadhanaCard(name: "Gaurav", rounds: 5, lectures: 2, links: <String>["https://github.com/Harshal12355/flashcards/blob/master/lib/Flashcard_View.dart",
-"https://github.com/Harshal12355/flashcards/blob/master/lib/Flashcard_View.dart"]),
+        SadhanaCard(name: "Gaurav", rounds: 5, lectures: 2, links: <String>[
+          "https://github.com/Harshal12355/flashcards/blob/master/lib/Flashcard_View.dart",
+          "https://www.youtube.com/watch?v=tbGqmS15ALY"
+        ]),
       ]),
       floatingActionButton: FloatingActionButton(
         child: Icon(
