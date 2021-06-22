@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class HomeScreenCard extends StatefulWidget {
   final String title;
   final String description;
-  const HomeScreenCard ({ Key? key, required this.title, required this.description }): super(key: key);
+  final String photoURL;
+  final String email;
+  const HomeScreenCard ({ Key? key, required this.title, required this.description, required this.photoURL, required this.email }): super(key: key);
 
   @override
   _HomeScreenCardState createState() => _HomeScreenCardState();
@@ -34,11 +36,10 @@ class _HomeScreenCardState extends State<HomeScreenCard> {
               child: ListTile(
                 minLeadingWidth: 50,
                 leading: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://source.unsplash.com/random/200x200"),
+                  backgroundImage: NetworkImage(widget.photoURL),
                 ),
                 title: Text(widget.title),
-                subtitle: Text("Boom Boom"),
+                subtitle: Text(widget.email),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
                   onPressed: () {},

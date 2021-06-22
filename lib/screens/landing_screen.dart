@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:folk_boys/provider/google_sign_in.dart';
 import 'package:folk_boys/screens/home_screen.dart';
 import 'package:folk_boys/screens/sadhana_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
@@ -40,6 +43,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: AppBar(
@@ -54,15 +58,13 @@ class _HomeState extends State<Home> {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.brown.shade600,
-                    child: const Text('GG'),
-                    radius: 25,
-                    // backgroundImage: NetworkImage(userAvatarUrl),  <- for when we have an image
+                    radius: 20,
+                    backgroundImage: NetworkImage(user.photoURL!),
                   ),
                   SizedBox(width: 10),
                   Text(
-                    'Name',
-                    style: TextStyle(fontSize: 30),
+                    user.displayName!,
+                    style: TextStyle(fontSize: 25),
                   ),
                 ],
               ),
@@ -78,6 +80,17 @@ class _HomeState extends State<Home> {
                 "Settings",
               ),
               onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text(
+                "Logout",
+              ),
+              onTap: () {
+                final provider =
+                    Provider.of<GoogleSignInProvider>(context, listen: false);
+                provider.logout();
+              },
             ),
           ],
         ),

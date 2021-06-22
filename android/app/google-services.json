@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "140966903926",
+    "project_id": "folk-app1",
+    "storage_bucket": "folk-app1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:140966903926:android:4cd0dda8259231feb71f57",
+        "android_client_info": {
+          "package_name": "com.example.folk_boys"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "140966903926-hfgo4ab85nkv2d24hk3h9o7jd4r2qbmf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4U1FJCqDptEMGHYkmkutdm0wLu4yJJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "140966903926-hfgo4ab85nkv2d24hk3h9o7jd4r2qbmf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
