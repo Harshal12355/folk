@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SadhanaCard extends StatefulWidget {
+  final String title;
+  final String description;
+  const SadhanaCard ({ Key? key, required this.title, required this.description }): super(key: key);
+
   @override
   _SadhanaCardState createState() => _SadhanaCardState();
 }
@@ -33,7 +37,7 @@ class _SadhanaCardState extends State<SadhanaCard> {
                   backgroundImage: NetworkImage(
                       "https://source.unsplash.com/random/200x200"),
                 ),
-                title: Text("Gandustan"),
+                title: Text(widget.title),
                 subtitle: Text("Boom Boom"),
                 trailing: IconButton(
                   icon: Icon(Icons.more_vert),
@@ -57,7 +61,7 @@ class _SadhanaCardState extends State<SadhanaCard> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(10),
-                  child: Container(child: Text("Da wae of the gandu")),
+                  child: Container(child: Text(widget.description)),
                 ),
                 SizedBox(
                   height: 10,

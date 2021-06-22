@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:folk_boys/widgets/sadhanda_card.dart';
 
 class Sadhana extends StatefulWidget {
   @override
@@ -33,11 +32,6 @@ class _SadhanaState extends State<Sadhana> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(children: <Widget>[
-        SadhanaCard(),
-        SadhanaCard(),
-        SadhanaCard(),
-      ]),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {

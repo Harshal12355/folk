@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folk_boys/screens/home_screen.dart';
 import 'package:folk_boys/screens/sadhana_screen.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -14,10 +15,7 @@ class _HomeState extends State<Home> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
+    HomeScreen(),
     Sadhana(),
     Text(
       'Profile',
