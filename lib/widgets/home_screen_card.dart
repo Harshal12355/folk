@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 
-class SadhanaCard extends StatefulWidget {
+class HomeScreenCard extends StatefulWidget {
   final String title;
   final String description;
-  const SadhanaCard({Key? key, required this.title, required this.description})
-      : super(key: key);
+  const HomeScreenCard ({ Key? key, required this.title, required this.description }): super(key: key);
 
   @override
-  _SadhanaCardState createState() => _SadhanaCardState();
+  _HomeScreenCardState createState() => _HomeScreenCardState();
 }
 
-class _SadhanaCardState extends State<SadhanaCard> {
+class _HomeScreenCardState extends State<HomeScreenCard> {
   @override
   Widget build(BuildContext context) {
-    return sadhanaCard();
+    return homescreenCard();
   }
 
-  Widget sadhanaCard() {
+  Widget homescreenCard() {
     // Function to create the post widgets
     return Container(
       padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
@@ -45,6 +44,15 @@ class _SadhanaCardState extends State<SadhanaCard> {
                   onPressed: () {},
                 ),
               ),
+            ),
+            Container(
+              child: Stack(children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: CircularProgressIndicator()),
+                ),
+                Image.network("https://source.unsplash.com/random/1920x1080")
+              ]),
             ),
             Column(
               children: [

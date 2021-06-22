@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:folk_boys/widgets/sadhanda_card.dart';
+import 'package:folk_boys/widgets/home_screen_card.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -13,9 +13,18 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(children: <Widget>[
-        SadhanaCard(title: 'A', description: 'Bruh A',),
-        SadhanaCard(title: 'B', description: 'Bruh B',),
-        SadhanaCard(title: 'C', description: 'Bruh C',),
+        HomeScreenCard(
+          title: 'A',
+          description: 'Bruh A',
+        ),
+        HomeScreenCard(
+          title: 'B',
+          description: 'Bruh B',
+        ),
+        HomeScreenCard(
+          title: 'C',
+          description: 'Bruh C',
+        ),
       ]),
     );
   }

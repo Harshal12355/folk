@@ -88,6 +88,8 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.black,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
           boxShadow: [
             BoxShadow(
               blurRadius: 20,
