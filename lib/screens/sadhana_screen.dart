@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:folk_boys/screens/sadhana_form.dart';
 import 'package:folk_boys/widgets/sadhanda_card.dart';
+import 'package:animations/animations.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class Sadhana extends StatefulWidget {
   @override
@@ -10,76 +15,52 @@ class _SadhanaState extends State<Sadhana> {
   final TextEditingController roundsCon = new TextEditingController();
   final TextEditingController lecturesCon = new TextEditingController();
   final TextEditingController linksCon = new TextEditingController();
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
-    AlertDialog dialog = AlertDialog(
-      title: Text('Sadhana Information'),
-      contentPadding: EdgeInsets.zero,
-      content: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              controller: roundsCon,
-              decoration: new InputDecoration(
-                hintText: "Number of rounds",
-              ),
-            ),
-            TextFormField(
-              controller: lecturesCon,
-              decoration: new InputDecoration(
-                hintText: "Time spent listening to lectures",
-              ),
-            ),
-            TextFormField(
-              controller: linksCon,
-              decoration: new InputDecoration(
-                hintText: "Links",
-              ),
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          //textColor: Colors.red,
-          //onPressed: () => Navigator.pop(context),
-          onPressed: () {
-            _sendDataBack(context);
-          },
-          child: Text('Submit'),
-        ),
-      ],
-    );
 
     return Scaffold(
-      body: ListView(children: <Widget>[
-        for (int i = 0; i < 10; i++)
-          SadhanaCard(name: "Gaurav", rounds: 5, lectures: 2, links: <String>[
-            "https://github.com/Harshal12355/flashcards/blob/master/lib/Flashcard_View.dart",
-            "https://www.youtube.com/watch?v=tbGqmS15ALY"
-          ])
-      ]),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.grey[600],
-        onPressed: () {
-          showDialog<void>(context: context, builder: (context) => dialog);
-        },
-      ),
-    );
-  }
-
-  void _sendDataBack(BuildContext context) {
-    String roundsBack = roundsCon.text;
-    String lecturesBack = lecturesCon.text;
-    String linksBack = linksCon.text;
-    print(roundsBack);
-    print(lecturesBack);
-    print(linksBack);
+        body: StreamBuilder(
+            stream: FirebaseFirestore.instance
+                .collection('users')
+                .doc(user.uid)
+                .collection('sadhanaCards')
+                .orderBy('timestamp', descending: true)
+                .snapshots()
+                ,
+            builder: (context, AsyncSnapshot snapshot) {
+              if (!snapshot.hasData) return Center(child: CircularProgressIndicator());
+              for (var doc in snapshot.data.docs) {
+                print(doc.data()['timestamp'].toDate());
+              }
+              return ListView(children: <Widget>[
+                for (var doc in snapshot.data.docs)
+                  SadhanaCard(
+                      id: doc.id,
+                      timeAgo: timeago.format(doc.data()['timestamp'].toDate()),
+                      rounds: doc.data()["rounds"],
+                      lectures: doc.data()["time"],
+                      links: doc.data()["links"],
+                  ),
+                SizedBox(height: 20,)
+              ]);
+            }),
+        floatingActionButton: OpenContainer(
+          transitionDuration: Duration(milliseconds: 500),
+          closedShape: CircleBorder(),
+          closedColor: Colors.grey[600]!,
+          closedBuilder: (BuildContext c, VoidCallback action) =>
+              FloatingActionButton(
+            tooltip: "Add New Card",
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.grey[600],
+            onPressed: action,
+          ),
+          openBuilder: (BuildContext c, VoidCallback action) => SadhanaForm(),
+          tappable: true,
+        ));
   }
 }

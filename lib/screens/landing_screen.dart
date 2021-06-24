@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser!;
+    final PageController _pageController = PageController(initialPage: 0);
     return Scaffold(
       // backgroundColor: Colors.white,
       appBar: AppBar(
@@ -95,8 +96,14 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: PageView(
+        controller: _pageController,
+        children: _widgetOptions,
+        onPageChanged: (page) {
+          setState(() {
+            _selectedIndex = page;
+          });
+        },
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -142,6 +149,7 @@ class _HomeState extends State<Home> {
                 setState(() {
                   _selectedIndex = index;
                 });
+                _pageController.jumpToPage(index);
               },
             ),
           ),

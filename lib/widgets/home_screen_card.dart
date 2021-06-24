@@ -5,7 +5,13 @@ class HomeScreenCard extends StatefulWidget {
   final String description;
   final String photoURL;
   final String email;
-  const HomeScreenCard ({ Key? key, required this.title, required this.description, required this.photoURL, required this.email }): super(key: key);
+  const HomeScreenCard(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.photoURL,
+      required this.email})
+      : super(key: key);
 
   @override
   _HomeScreenCardState createState() => _HomeScreenCardState();
@@ -24,26 +30,22 @@ class _HomeScreenCardState extends State<HomeScreenCard> {
       width: double.maxFinite,
       // height: double.maxFinite,
       child: Card(
-        elevation: 20,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(20))),
+        elevation: 10,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            GestureDetector(
-              onTap: () {},
-              child: ListTile(
-                minLeadingWidth: 50,
-                leading: CircleAvatar(
-                  backgroundImage: NetworkImage(widget.photoURL),
-                ),
-                title: Text(widget.title),
-                subtitle: Text(widget.email),
-                trailing: IconButton(
-                  icon: Icon(Icons.more_vert),
-                  onPressed: () {},
-                ),
+            ListTile(
+              minLeadingWidth: 50,
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(widget.photoURL),
+              ),
+              title: Text(widget.title),
+              subtitle: Text(widget.email),
+              trailing: IconButton(
+                icon: Icon(Icons.more_vert),
+                onPressed: () {},
               ),
             ),
             Container(
