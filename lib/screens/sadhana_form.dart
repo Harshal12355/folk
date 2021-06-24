@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SadhanaForm extends StatefulWidget {
   SadhanaForm({Key? key}) : super(key: key);
@@ -22,7 +23,10 @@ class _SadhanaFormState extends State<SadhanaForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Enter Details"),
+        title: Text(
+          "Enter Details",
+          style: GoogleFonts.montserrat(),
+        ),
       ),
       body: Container(
         child: Padding(
@@ -33,6 +37,7 @@ class _SadhanaFormState extends State<SadhanaForm> {
               // mainAxisSize: MainAxisSize.max,
               children: [
                 TextFormField(
+                  style: GoogleFonts.montserrat(),
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -46,11 +51,14 @@ class _SadhanaFormState extends State<SadhanaForm> {
                   controller: roundsCon,
                   decoration: new InputDecoration(
                     labelText: "Number of rounds",
-                    border: OutlineInputBorder(),
+                    labelStyle: GoogleFonts.montserrat(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   ),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  style: GoogleFonts.montserrat(),
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -63,14 +71,20 @@ class _SadhanaFormState extends State<SadhanaForm> {
                     return null;
                   },
                   decoration: new InputDecoration(
-                      border: OutlineInputBorder(),
+                      labelStyle: GoogleFonts.montserrat(),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
                       labelText: 'Time spent listening to lectures'),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  style: GoogleFonts.montserrat(),
                   controller: linksCon,
                   decoration: new InputDecoration(
-                    border: OutlineInputBorder(),
+                    labelStyle: GoogleFonts.montserrat(),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15.0))),
                     labelText: "Links",
                     suffixIcon: IconButton(
                         onPressed: () {
@@ -84,7 +98,8 @@ class _SadhanaFormState extends State<SadhanaForm> {
                         icon: Icon(Icons.add)),
                   ),
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-F!#$&-;=?-_~%\[\]]')),
+                    FilteringTextInputFormatter.allow(
+                        RegExp(r'[a-zA-F!#$&-;=?-_~%\[\]]')),
                   ],
                   onFieldSubmitted: (value) {
                     setState(() {
@@ -97,7 +112,10 @@ class _SadhanaFormState extends State<SadhanaForm> {
                 Wrap(runSpacing: 1, spacing: 8, children: [
                   for (var link in linkString)
                     Chip(
-                        label: Text(link),
+                        label: Text(
+                          link,
+                          style: GoogleFonts.montserrat(),
+                        ),
                         onDeleted: () {
                           setState(() {
                             linkString.remove(link);
@@ -109,7 +127,10 @@ class _SadhanaFormState extends State<SadhanaForm> {
                   onPressed: () {
                     _sendDataBack(context);
                   },
-                  label: Text('Add'),
+                  label: Text(
+                    'Add',
+                    style: GoogleFonts.montserrat(),
+                  ),
                   icon: Icon(Icons.task_alt),
                 ),
                 SizedBox(height: 30),

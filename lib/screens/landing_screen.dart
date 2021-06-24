@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:folk_boys/provider/google_sign_in.dart';
 import 'package:folk_boys/screens/home_screen.dart';
 import 'package:folk_boys/screens/sadhana_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 
@@ -26,19 +27,10 @@ class _HomeState extends State<Home> {
     ),
   ];
 
-  static List<Widget> _pageName = <Widget>[
-    Text(
-      'Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Sadhana',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
+  static List<String> _pageName = <String>[
+    'Home',
+    'Sadhana',
+    'Profile',
   ];
 
   @override
@@ -49,7 +41,7 @@ class _HomeState extends State<Home> {
       // backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
-        title: _pageName.elementAt(_selectedIndex),
+        title: Text(_pageName.elementAt(_selectedIndex),style: GoogleFonts.montserrat(fontSize: 30, fontWeight: FontWeight.w600)),
       ),
       drawer: Drawer(
         child: ListView(

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -169,21 +170,30 @@ class _SadhanaCardState extends State<SadhanaCard> {
                       ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(left: 20, bottom: 10),
+                  padding:
+                      const EdgeInsets.only(left: 20, bottom: 10, right: 20),
                   child: Wrap(
                     spacing: 8,
                     children: [
                       for (var link in widget.links)
                         Chip(
-                          label: InkWell(
-                              child: Text(
-                                link,
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline,
+                          avatar: _getIcon(link),
+                          label: Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: InkWell(
+                                child: Text(
+                                  link,
+                                  overflow: TextOverflow.ellipsis,
+                                  // style: TextStyle(
+                                  //   color: Colors.blue,
+                                  //   decoration: TextDecoration.underline,
+                                  // ),
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.blue,
+                                  ),
                                 ),
-                              ),
-                              onTap: () => launch(link)),
+                                onTap: () => launch(link)),
+                          ),
                         ),
                     ],
                   )),
@@ -192,6 +202,19 @@ class _SadhanaCardState extends State<SadhanaCard> {
         ],
       ),
     );
+  }
+
+  Widget? _getIcon(link) {
+    if (link.contains(new RegExp(r'youtu', caseSensitive: false)))
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
+        child: Icon(
+          FontAwesomeIcons.youtube,
+          color: Colors.red,
+        ),
+      );
+    else
+      return null;
   }
 
   Future<void> deleteCard() async {
