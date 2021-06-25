@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:folk_boys/config.dart';
 import 'package:folk_boys/provider/google_sign_in.dart';
 import 'package:folk_boys/screens/home_screen.dart';
 import 'package:folk_boys/screens/sadhana_screen.dart';
@@ -41,31 +42,43 @@ class _HomeState extends State<Home> {
       // backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
-        title: Text(_pageName.elementAt(_selectedIndex),style: GoogleFonts.montserrat(fontSize: 30, fontWeight: FontWeight.w600)),
+        title: Text(_pageName.elementAt(_selectedIndex),
+            style: GoogleFonts.montserrat(
+                fontSize: 30, fontWeight: FontWeight.w600)),
       ),
       drawer: Drawer(
         child: ListView(
           children: [
+            Center(
+              child: CircleAvatar(
+                radius: 40,
+                backgroundImage: NetworkImage(user.photoURL!),
+              ),
+            ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: NetworkImage(user.photoURL!),
-                  ),
-                  SizedBox(width: 10),
                   Text(
                     user.displayName!,
-                    style: TextStyle(fontSize: 25),
+                    style: GoogleFonts.montserrat(fontSize: 25),
                   ),
+                  IconButton(
+                      splashRadius: 25,
+                      onPressed: () {
+                        currentTheme.switchTheme();
+                      },
+                      icon: Icon(currentTheme.isDark()
+                          ? Icons.dark_mode
+                          : Icons.light_mode)),
                 ],
               ),
             ),
             Divider(
               indent: 20,
               endIndent: 20,
-              thickness: 2,
+              thickness: 2.5,
             ),
             ListTile(
               leading: Icon(Icons.settings),
