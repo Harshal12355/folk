@@ -32,7 +32,7 @@ class GoogleSignInProvider extends ChangeNotifier {
                 'name': FirebaseAuth.instance.currentUser!.displayName,
                 'photoURL': FirebaseAuth.instance.currentUser!.photoURL,
                 'email': FirebaseAuth.instance.currentUser!.email,
-              }, SetOptions(merge: true))
+              }, SetOptions(merge: true)),
             });
 
     notifyListeners();

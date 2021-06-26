@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:folk_boys/config.dart';
 import 'package:folk_boys/provider/google_sign_in.dart';
@@ -16,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedIndex = 0;
+  static int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static List<Widget> _widgetOptions = <Widget>[
@@ -98,6 +99,7 @@ class _HomeState extends State<Home> {
                 provider.logout();
               },
             ),
+            CupertinoSwitch(value: currentTheme.isDark(),onChanged: (a) {currentTheme.switchTheme();},)
           ],
         ),
       ),
